@@ -1,0 +1,1347 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Printable QR Code Labels</title>
+<style>
+    /* This rule is for the browser's print engine */
+    @page {
+        size: 8.5in 11in;
+        margin: 0; /* Force the browser to have NO default margins */
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+    /* --- NEW: A container for a single sheet of paper --- */
+    .printable-page {
+        width: 8.5in;
+        height: 11in;
+        position: relative; /* This is key for positioning the grid */
+        page-break-after: always; /* Each one is a new page */
+        overflow: hidden;
+    }
+    /* --- NEW: The label grid is now positioned INSIDE the paper container --- */
+    .label-grid {
+        position: absolute;
+        top: 0.5in;
+        left: 0.375in;
+        display: grid;
+        grid-template-columns: repeat(7, 1.0in);
+        grid-template-rows: repeat(9, 1.0in);
+        grid-gap: 0.125in 0.125in;
+    }
+    .label {
+        width: 1.0in;
+        height: 1.0in;
+        padding: 0.05in;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+    }
+    .label img {
+        height: 0.65in;
+        width: 0.65in;
+        display: block;
+    }
+    .label .name {
+        font-size: 6pt;
+        font-weight: bold;
+        margin-top: 0.05in;
+        line-height: 1.1;
+        max-height: 0.2in;
+    }
+</style>
+</head>
+<body>
+<div class="printable-page"><div class="label-grid">
+        <div class="label">
+            <img src="qr_codes/ad5484.png" alt="QR Code for ad5484">
+            <div class="name">Abed, Mordechai Chaim</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/am7455.png" alt="QR Code for am7455">
+            <div class="name">Abehsera, Adina</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/aw1735.png" alt="QR Code for aw1735">
+            <div class="name">Abramov, Moria</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ax1529.png" alt="QR Code for ax1529">
+            <div class="name">Adler, Abigail</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ba1172.png" alt="QR Code for ba1172">
+            <div class="name">Aghion, Matan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/bd4558.png" alt="QR Code for bd4558">
+            <div class="name">Aharon, Linor</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/be4659.png" alt="QR Code for be4659">
+            <div class="name">Bacher, Danielle</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/bf8135.png" alt="QR Code for bf8135">
+            <div class="name">Bahar, Michael</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/bf8240.png" alt="QR Code for bf8240">
+            <div class="name">Bar, Abigail</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/bf9672.png" alt="QR Code for bf9672">
+            <div class="name">Basailov, Emily</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/bh3056.png" alt="QR Code for bh3056">
+            <div class="name">Behar, Esther</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/bk6780.png" alt="QR Code for bk6780">
+            <div class="name">Ben Yoram, Isaac</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/bk8598.png" alt="QR Code for bk8598">
+            <div class="name">Bendel, Abigail</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/br1479.png" alt="QR Code for br1479">
+            <div class="name">Benzaquen, Daniel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/br2159.png" alt="QR Code for br2159">
+            <div class="name">Bichachi, Jenna</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/br6378.png" alt="QR Code for br6378">
+            <div class="name">Bienenfeld, Ava</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/bt3053.png" alt="QR Code for bt3053">
+            <div class="name">Bierman, Aryeh</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/bv6611.png" alt="QR Code for bv6611">
+            <div class="name">Blanka, Leelah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/bx2248.png" alt="QR Code for bx2248">
+            <div class="name">Blanka, Leeraz</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/bx7493.png" alt="QR Code for bx7493">
+            <div class="name">Burstein, Victoria</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/bx8085.png" alt="QR Code for bx8085">
+            <div class="name">Chavin, Luna</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/cf6086.png" alt="QR Code for cf6086">
+            <div class="name">Choua, Ruth</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/cf7899.png" alt="QR Code for cf7899">
+            <div class="name">Cohen, Devora</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/cg2686.png" alt="QR Code for cg2686">
+            <div class="name">Cohen, Rosie</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/cj3518.png" alt="QR Code for cj3518">
+            <div class="name">Deray, Eden</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ck9881.png" alt="QR Code for ck9881">
+            <div class="name">Deutsch, Dov</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/cq4740.png" alt="QR Code for cq4740">
+            <div class="name">Dorfman, Noam</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ct5455.png" alt="QR Code for ct5455">
+            <div class="name">Ermine, Yonah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/cu9125.png" alt="QR Code for cu9125">
+            <div class="name">Eshmoili, Natanel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/cw2042.png" alt="QR Code for cw2042">
+            <div class="name">Farbman, Jordin</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/cx5100.png" alt="QR Code for cx5100">
+            <div class="name">Feinsod, Esther</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/da8997.png" alt="QR Code for da8997">
+            <div class="name">Feld, Lauren</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/dh3099.png" alt="QR Code for dh3099">
+            <div class="name">Feldman, Yonatan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/dh5452.png" alt="QR Code for dh5452">
+            <div class="name">Fellman, Asher</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/di2408.png" alt="QR Code for di2408">
+            <div class="name">Fialkoff, Keira</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/di3326.png" alt="QR Code for di3326">
+            <div class="name">Fisch, Renee</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/di7446.png" alt="QR Code for di7446">
+            <div class="name">Fridman, Aaron</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/dj4962.png" alt="QR Code for dj4962">
+            <div class="name">Fried, Briah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/dk5331.png" alt="QR Code for dk5331">
+            <div class="name">Friedman, Jack</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/dm1709.png" alt="QR Code for dm1709">
+            <div class="name">Frist, Mia</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/dm3522.png" alt="QR Code for dm3522">
+            <div class="name">Ganz, Ilana</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/dn1866.png" alt="QR Code for dn1866">
+            <div class="name">Gerenstein, Benjamin</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/dp1585.png" alt="QR Code for dp1585">
+            <div class="name">Gerszberg, Jacob</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/dq4504.png" alt="QR Code for dq4504">
+            <div class="name">Gigi, Hila</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/dv5963.png" alt="QR Code for dv5963">
+            <div class="name">Goldberg, Ethan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ee4601.png" alt="QR Code for ee4601">
+            <div class="name">Goldberg, Shir</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ef6414.png" alt="QR Code for ef6414">
+            <div class="name">Goldberg, William</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ef6910.png" alt="QR Code for ef6910">
+            <div class="name">Gotesdyner, Ariel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ei8878.png" alt="QR Code for ei8878">
+            <div class="name">Gurfinkel, Jacob</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ek1352.png" alt="QR Code for ek1352">
+            <div class="name">Hagler, Ava</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ek6347.png" alt="QR Code for ek6347">
+            <div class="name">Haibi, Noah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/el3264.png" alt="QR Code for el3264">
+            <div class="name">Haik, Nava</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ew3797.png" alt="QR Code for ew3797">
+            <div class="name">Harris, Gabriel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ex6981.png" alt="QR Code for ex6981">
+            <div class="name">Heller, Golda</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ez9865.png" alt="QR Code for ez9865">
+            <div class="name">Ifrah, Ikey</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/fa7743.png" alt="QR Code for fa7743">
+            <div class="name">Jaimovich, Chaya</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/fc3963.png" alt="QR Code for fc3963">
+            <div class="name">Kaplan, Aaron</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/fc7556.png" alt="QR Code for fc7556">
+            <div class="name">Katz, Emily</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/fl9421.png" alt="QR Code for fl9421">
+            <div class="name">Katz, Jacob</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/fl9527.png" alt="QR Code for fl9527">
+            <div class="name">Kedar, Daviel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/fo7161.png" alt="QR Code for fo7161">
+            <div class="name">Kindel, Eliya</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/fs3625.png" alt="QR Code for fs3625">
+            <div class="name">Klein, Alexa</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ga9008.png" alt="QR Code for ga9008">
+            <div class="name">Kohanbash, Kayla</div>
+        </div>
+        </div></div><div class="printable-page"><div class="label-grid">
+        <div class="label">
+            <img src="qr_codes/gi1922.png" alt="QR Code for gi1922">
+            <div class="name">Kohlhagen, Ethan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/gm5326.png" alt="QR Code for gm5326">
+            <div class="name">Kohn, Ava</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/gs1834.png" alt="QR Code for gs1834">
+            <div class="name">Kotler, Lea</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/gx4511.png" alt="QR Code for gx4511">
+            <div class="name">Kraus, Lielle</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/gx8631.png" alt="QR Code for gx8631">
+            <div class="name">Krawatsky, Pearl</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/hb4964.png" alt="QR Code for hb4964">
+            <div class="name">Laven, Jacob</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/hg9046.png" alt="QR Code for hg9046">
+            <div class="name">Legum, Makenzie</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/hk3874.png" alt="QR Code for hk3874">
+            <div class="name">Levine, Yael</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ho6739.png" alt="QR Code for ho6739">
+            <div class="name">Levontin, Evan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/hs5053.png" alt="QR Code for hs5053">
+            <div class="name">Levy, Orelle</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ht2978.png" alt="QR Code for ht2978">
+            <div class="name">Loren, Noa</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/hw2872.png" alt="QR Code for hw2872">
+            <div class="name">Lynn, Hannah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/hw3400.png" alt="QR Code for hw3400">
+            <div class="name">Maksumov, Joshua</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/hy5348.png" alt="QR Code for hy5348">
+            <div class="name">Marciano, Samuel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/hy8300.png" alt="QR Code for hy8300">
+            <div class="name">Margolis, Ariella</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/id4052.png" alt="QR Code for id4052">
+            <div class="name">Marks, Jared</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/id9638.png" alt="QR Code for id9638">
+            <div class="name">Matiash, Abigail</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ig7720.png" alt="QR Code for ig7720">
+            <div class="name">Mazor, Maia</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/iq4145.png" alt="QR Code for iq4145">
+            <div class="name">Meyers, Asher</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/iu2742.png" alt="QR Code for iu2742">
+            <div class="name">Mirkin, Menashe</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ix4768.png" alt="QR Code for ix4768">
+            <div class="name">Nafisi, Daniella</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/jc6091.png" alt="QR Code for jc6091">
+            <div class="name">Norman, Nathaniel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/jd7904.png" alt="QR Code for jd7904">
+            <div class="name">Ohayon, Gavriel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/jh2924.png" alt="QR Code for jh2924">
+            <div class="name">Paltzik, Jakob</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/jn1076.png" alt="QR Code for jn1076">
+            <div class="name">Perez, Nelly</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/jp9272.png" alt="QR Code for jp9272">
+            <div class="name">Rackman, Judah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/jq6968.png" alt="QR Code for jq6968">
+            <div class="name">Reinhard, Jessica</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/jq8781.png" alt="QR Code for jq8781">
+            <div class="name">Reinherz, Eliana</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/jx9244.png" alt="QR Code for jx9244">
+            <div class="name">Rosanel, Zev</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ka7168.png" alt="QR Code for ka7168">
+            <div class="name">Rosen, Emunah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/kc8742.png" alt="QR Code for kc8742">
+            <div class="name">Rosman, Elie</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/kh8768.png" alt="QR Code for kh8768">
+            <div class="name">Ross, Ayla</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/kk2688.png" alt="QR Code for kk2688">
+            <div class="name">Ross, Liana</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/kl6021.png" alt="QR Code for kl6021">
+            <div class="name">Roth, Sarah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/kl7834.png" alt="QR Code for kl7834">
+            <div class="name">Scandarion, Michael</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/km6821.png" alt="QR Code for km6821">
+            <div class="name">Schebovitz, Meir</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ko3842.png" alt="QR Code for ko3842">
+            <div class="name">Schwartz, Molly</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ko9923.png" alt="QR Code for ko9923">
+            <div class="name">Segelbaum, Bella</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/kp1451.png" alt="QR Code for kp1451">
+            <div class="name">Seghi, Kate</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/kw6402.png" alt="QR Code for kw6402">
+            <div class="name">Shemesh, Aryeh</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/kx3364.png" alt="QR Code for kx3364">
+            <div class="name">Shriki, Amit</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/lb8536.png" alt="QR Code for lb8536">
+            <div class="name">Shulkes, Sarah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ld9580.png" alt="QR Code for ld9580">
+            <div class="name">Sicherman, Jacob</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/lj8644.png" alt="QR Code for lj8644">
+            <div class="name">Skolnik, Ariella</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ll2991.png" alt="QR Code for ll2991">
+            <div class="name">Slesinger, Elizabeth</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ln6930.png" alt="QR Code for ln6930">
+            <div class="name">Slomczynski, Yaniv</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/lo2186.png" alt="QR Code for lo2186">
+            <div class="name">Soffer, Eli</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/lp3264.png" alt="QR Code for lp3264">
+            <div class="name">Sommers, Maayan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/lr2982.png" alt="QR Code for lr2982">
+            <div class="name">Sperber, Judah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/lw1522.png" alt="QR Code for lw1522">
+            <div class="name">Sperling, Evan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ly5177.png" alt="QR Code for ly5177">
+            <div class="name">Stein, Shalev</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/mc7029.png" alt="QR Code for mc7029">
+            <div class="name">Stern, Aliza</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/md5068.png" alt="QR Code for md5068">
+            <div class="name">Taboh, Sarah-Chaya</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/mh4472.png" alt="QR Code for mh4472">
+            <div class="name">Ulmer, Poppy</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/mj3416.png" alt="QR Code for mj3416">
+            <div class="name">Verbitsky, Ari</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/mm8393.png" alt="QR Code for mm8393">
+            <div class="name">Walter, Ella</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/mo1004.png" alt="QR Code for mo1004">
+            <div class="name">Warshawsky, Gabriel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/mp7468.png" alt="QR Code for mp7468">
+            <div class="name">Weber, Shoshana</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ms5494.png" alt="QR Code for ms5494">
+            <div class="name">Weisfeld, Gabriel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/mu6879.png" alt="QR Code for mu6879">
+            <div class="name">Weisman, Eli</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/na4176.png" alt="QR Code for na4176">
+            <div class="name">Weisstuch, Abby</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/na8632.png" alt="QR Code for na8632">
+            <div class="name">Yeshurun, Leah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/nc8146.png" alt="QR Code for nc8146">
+            <div class="name">Zahavi, Lielle</div>
+        </div>
+        </div></div><div class="printable-page"><div class="label-grid">
+        <div class="label">
+            <img src="qr_codes/nd5110.png" alt="QR Code for nd5110">
+            <div class="name">Zeitouni, Leora</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ne7021.png" alt="QR Code for ne7021">
+            <div class="name">Zombek, William</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ng7398.png" alt="QR Code for ng7398">
+            <div class="name">Abitbol, Alexia</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/nm4318.png" alt="QR Code for nm4318">
+            <div class="name">Abudarham, Talya</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/no2163.png" alt="QR Code for no2163">
+            <div class="name">Adar, Ayala</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/no2539.png" alt="QR Code for no2539">
+            <div class="name">Amoyelle, Yoel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/no5657.png" alt="QR Code for no5657">
+            <div class="name">Aronov, Joshua</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/no7470.png" alt="QR Code for no7470">
+            <div class="name">Aryeh, Elizabeth (Elisheva)</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/np9281.png" alt="QR Code for np9281">
+            <div class="name">Asher, Netanel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/nq8558.png" alt="QR Code for nq8558">
+            <div class="name">Avezbadalov, Yael</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/nu6378.png" alt="QR Code for nu6378">
+            <div class="name">Baitner, Stella</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/nv7068.png" alt="QR Code for nv7068">
+            <div class="name">Basailov, Ester</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/nz4831.png" alt="QR Code for nz4831">
+            <div class="name">Beim, Abigail</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/nz9106.png" alt="QR Code for nz9106">
+            <div class="name">Belkin, Shoshana</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/oh8055.png" alt="QR Code for oh8055">
+            <div class="name">Beneda, Yehudah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/oj9629.png" alt="QR Code for oj9629">
+            <div class="name">Berg, Eli</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ok2769.png" alt="QR Code for ok2769">
+            <div class="name">Berg, Raphi</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/om1295.png" alt="QR Code for om1295">
+            <div class="name">Berger, Oran</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/or1184.png" alt="QR Code for or1184">
+            <div class="name">Berman, Liba</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/oy2946.png" alt="QR Code for oy2946">
+            <div class="name">Brandt, Jacob</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/pa7534.png" alt="QR Code for pa7534">
+            <div class="name">Bronfeld, Jacob</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/pb1404.png" alt="QR Code for pb1404">
+            <div class="name">Bryski, Ari</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/pb2089.png" alt="QR Code for pb2089">
+            <div class="name">Busany, Elior</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/pb3916.png" alt="QR Code for pb3916">
+            <div class="name">Casper, Ida</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/pn2663.png" alt="QR Code for pn2663">
+            <div class="name">Chaikin, Eliana</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/pn6316.png" alt="QR Code for pn6316">
+            <div class="name">Clarfield, Teddy</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/pt4275.png" alt="QR Code for pt4275">
+            <div class="name">Clarke, Jacob</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/pu2236.png" alt="QR Code for pu2236">
+            <div class="name">Cohen, Isabella</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/py4269.png" alt="QR Code for py4269">
+            <div class="name">Cohen, Joshua</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/pz9866.png" alt="QR Code for pz9866">
+            <div class="name">Cohen, Liad</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/qb1078.png" alt="QR Code for qb1078">
+            <div class="name">Cohen, Shayna</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/qb8166.png" alt="QR Code for qb8166">
+            <div class="name">Corcos, Aaron</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/qd9740.png" alt="QR Code for qd9740">
+            <div class="name">Cotter, Arie</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/qe5576.png" alt="QR Code for qe5576">
+            <div class="name">Dahan, Elie</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/qf1789.png" alt="QR Code for qf1789">
+            <div class="name">Daudy, Leah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/qf8976.png" alt="QR Code for qf8976">
+            <div class="name">Davidov, Abigail</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/qn6060.png" alt="QR Code for qn6060">
+            <div class="name">Deutsch, Meira</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/qo7428.png" alt="QR Code for qo7428">
+            <div class="name">Djament, Yael</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/qp7633.png" alt="QR Code for qp7633">
+            <div class="name">Ehrenreich, Coby</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/qq8471.png" alt="QR Code for qq8471">
+            <div class="name">Ehrlich, Shlomo</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/qr1742.png" alt="QR Code for qr1742">
+            <div class="name">Eidelman, Moshe</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/qy2345.png" alt="QR Code for qy2345">
+            <div class="name">Eisenberger, Matanel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/qy5889.png" alt="QR Code for qy5889">
+            <div class="name">Ellis, Elisheva</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/qy8378.png" alt="QR Code for qy8378">
+            <div class="name">Esan, Ayelet</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/re1300.png" alt="QR Code for re1300">
+            <div class="name">Feinberg, Temima</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/rh8572.png" alt="QR Code for rh8572">
+            <div class="name">Finkelstein, Mia</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ri3021.png" alt="QR Code for ri3021">
+            <div class="name">Fisch, Hailey</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/rm2708.png" alt="QR Code for rm2708">
+            <div class="name">Freedman, Shai</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ro2786.png" alt="QR Code for ro2786">
+            <div class="name">Friedman, Aliya</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/rp6531.png" alt="QR Code for rp6531">
+            <div class="name">Frisch, Daniel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/rw9046.png" alt="QR Code for rw9046">
+            <div class="name">Goldberg, Jason</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ry2374.png" alt="QR Code for ry2374">
+            <div class="name">Goldsmith, Sofia</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/rz7036.png" alt="QR Code for rz7036">
+            <div class="name">Goldwyn, Miles</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/sa2105.png" alt="QR Code for sa2105">
+            <div class="name">Grajower, Dovid</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/sb1414.png" alt="QR Code for sb1414">
+            <div class="name">Greisman, Benjamin</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/sb5760.png" alt="QR Code for sb5760">
+            <div class="name">Gutfreund, Amishadai</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/sd7145.png" alt="QR Code for sd7145">
+            <div class="name">Hakim, Hannah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/sd8913.png" alt="QR Code for sd8913">
+            <div class="name">Haller, Abigail</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/sl8446.png" alt="QR Code for sl8446">
+            <div class="name">Hamburger, Avi</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/sp8933.png" alt="QR Code for sp8933">
+            <div class="name">Harari, Jonah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/sy1372.png" alt="QR Code for sy1372">
+            <div class="name">Harbor, Topaz</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/tb1020.png" alt="QR Code for tb1020">
+            <div class="name">Hassin, Orielle</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/tc2833.png" alt="QR Code for tc2833">
+            <div class="name">Hirsch, Sarita</div>
+        </div>
+        </div></div><div class="printable-page"><div class="label-grid">
+        <div class="label">
+            <img src="qr_codes/td6002.png" alt="QR Code for td6002">
+            <div class="name">Holczer, David</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/te1288.png" alt="QR Code for te1288">
+            <div class="name">Iskowitz, Gabriel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/tf1977.png" alt="QR Code for tf1977">
+            <div class="name">Izsak, Zachary</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/tg5651.png" alt="QR Code for tg5651">
+            <div class="name">Jacobs, Jackson</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/tj3678.png" alt="QR Code for tj3678">
+            <div class="name">Kandinov, Talya</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/tj6872.png" alt="QR Code for tj6872">
+            <div class="name">Kindel, Korin</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/tm5063.png" alt="QR Code for tm5063">
+            <div class="name">Kirschner, Sari</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/to8449.png" alt="QR Code for to8449">
+            <div class="name">Klechevsky, Emma</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/tp8976.png" alt="QR Code for tp8976">
+            <div class="name">Klinger, Kayla</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/tr8670.png" alt="QR Code for tr8670">
+            <div class="name">Kolodny, Miriam</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ts7578.png" alt="QR Code for ts7578">
+            <div class="name">Korchak, Layla</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/tt8807.png" alt="QR Code for tt8807">
+            <div class="name">Kornbluth, Aliza</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ty7462.png" alt="QR Code for ty7462">
+            <div class="name">Landau, Benjamin</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ud1087.png" alt="QR Code for ud1087">
+            <div class="name">Lasry, Hadas</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ud8427.png" alt="QR Code for ud8427">
+            <div class="name">Lazerson, Noa</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/uf1553.png" alt="QR Code for uf1553">
+            <div class="name">Legum, Zoe</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/uh6742.png" alt="QR Code for uh6742">
+            <div class="name">Leifer, Rachel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/uj1507.png" alt="QR Code for uj1507">
+            <div class="name">Leizgold, Hanna</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/un3365.png" alt="QR Code for un3365">
+            <div class="name">Leubitz, Ava</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/un3787.png" alt="QR Code for un3787">
+            <div class="name">Levich, Justin</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/un6475.png" alt="QR Code for un6475">
+            <div class="name">Levine, Raphael</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/un9970.png" alt="QR Code for un9970">
+            <div class="name">Lobato, Ari-Benjamin</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/uq4872.png" alt="QR Code for uq4872">
+            <div class="name">Louk, David</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/us1483.png" alt="QR Code for us1483">
+            <div class="name">Mawardi, Rachelle</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/us3727.png" alt="QR Code for us3727">
+            <div class="name">Mayer, Ilan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/uv9553.png" alt="QR Code for uv9553">
+            <div class="name">Mayer, Tamar</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/uw8246.png" alt="QR Code for uw8246">
+            <div class="name">Mayzel, Gadi</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/va8585.png" alt="QR Code for va8585">
+            <div class="name">Mekler, Gabriella</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/vc5503.png" alt="QR Code for vc5503">
+            <div class="name">Mizel, Ayla</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/vc6033.png" alt="QR Code for vc6033">
+            <div class="name">Natanel, Michal</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ve8890.png" alt="QR Code for ve8890">
+            <div class="name">Neuman, Mindy</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/vf1052.png" alt="QR Code for vf1052">
+            <div class="name">Newman, Alexis</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/vf3858.png" alt="QR Code for vf3858">
+            <div class="name">Nissanov, Josef</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/vo8478.png" alt="QR Code for vo8478">
+            <div class="name">Nurieli, Zakkai</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/vp3106.png" alt="QR Code for vp3106">
+            <div class="name">Ohayon, Avigail</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/vs2055.png" alt="QR Code for vs2055">
+            <div class="name">Olsen, Aiden</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/wc4936.png" alt="QR Code for wc4936">
+            <div class="name">Pardau, Jed</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/we7779.png" alt="QR Code for we7779">
+            <div class="name">Perl, Eitan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/wf2768.png" alt="QR Code for wf2768">
+            <div class="name">Pfefer, Benjamin</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/wf4500.png" alt="QR Code for wf4500">
+            <div class="name">Press, Layla</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/wh9293.png" alt="QR Code for wh9293">
+            <div class="name">Rabinowitz, Shalva</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/wl6195.png" alt="QR Code for wl6195">
+            <div class="name">Reich, Yona</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/wp4919.png" alt="QR Code for wp4919">
+            <div class="name">Ribault, Ariella</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/wr7655.png" alt="QR Code for wr7655">
+            <div class="name">Rosen, Hadarah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ws6778.png" alt="QR Code for ws6778">
+            <div class="name">Samuels, Rami</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ws8587.png" alt="QR Code for ws8587">
+            <div class="name">Santhouse, Gabrielle</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/wt6298.png" alt="QR Code for wt6298">
+            <div class="name">Sasouness, Hannah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/wt8793.png" alt="QR Code for wt8793">
+            <div class="name">Scher, Matan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/wu1161.png" alt="QR Code for wu1161">
+            <div class="name">Schultz, Eitan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/wv5338.png" alt="QR Code for wv5338">
+            <div class="name">Schwartz, Ella</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/xb7904.png" alt="QR Code for xb7904">
+            <div class="name">Schwartz, Yochanan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/xc5694.png" alt="QR Code for xc5694">
+            <div class="name">Sedaghati, Noya</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/xc9037.png" alt="QR Code for xc9037">
+            <div class="name">Shemesh, Adi</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/xd2085.png" alt="QR Code for xd2085">
+            <div class="name">Shemesh, Orlee</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/xe8749.png" alt="QR Code for xe8749">
+            <div class="name">Shimunov, Ariana</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/xf1311.png" alt="QR Code for xf1311">
+            <div class="name">Shtern, Ron</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/xg5817.png" alt="QR Code for xg5817">
+            <div class="name">Spitz, Jolie</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/xh2681.png" alt="QR Code for xh2681">
+            <div class="name">Stern, Ethan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/xk1714.png" alt="QR Code for xk1714">
+            <div class="name">Tarich, Lilah</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/yd2549.png" alt="QR Code for yd2549">
+            <div class="name">Toronczyk, Talia</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/yn1717.png" alt="QR Code for yn1717">
+            <div class="name">Trauring, David</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/ys9869.png" alt="QR Code for ys9869">
+            <div class="name">Turik, Noam</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/yv7233.png" alt="QR Code for yv7233">
+            <div class="name">Ulmer, Harper</div>
+        </div>
+        </div></div><div class="printable-page"><div class="label-grid">
+        <div class="label">
+            <img src="qr_codes/yv8484.png" alt="QR Code for yv8484">
+            <div class="name">Wasserman, Dean</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/zl3443.png" alt="QR Code for zl3443">
+            <div class="name">Wasserman, Nathan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/zq5468.png" alt="QR Code for zq5468">
+            <div class="name">Weg, Mirel</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/zr5995.png" alt="QR Code for zr5995">
+            <div class="name">Wubnech, Jonathan</div>
+        </div>
+        
+        <div class="label">
+            <img src="qr_codes/zv4789.png" alt="QR Code for zv4789">
+            <div class="name">Yarkony, Natalie</div>
+        </div>
+        <div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div></div></div></body></html>

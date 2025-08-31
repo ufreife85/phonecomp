@@ -13,13 +13,15 @@ def get_user_input(prompt, input_type=float):
 
 # --- Get layout details from the user ---
 print("--- Label Layout Configuration ---")
-print("Please provide the dimensions in inches.")
+print("Please provide all dimensions in inches. Use a ruler to measure your label sheet.")
 cols = get_user_input("Enter number of columns (labels left-to-right): ", int)
 rows = get_user_input("Enter number of rows (labels top-to-bottom): ", int)
 label_width = get_user_input("Enter the width of a single label: ")
 label_height = get_user_input("Enter the height of a single label: ")
 margin_top = get_user_input("Enter the top page margin: ")
 margin_left = get_user_input("Enter the left page margin: ")
+horizontal_gap = get_user_input("Enter the horizontal gap (space between labels side-by-side): ")
+vertical_gap = get_user_input("Enter the vertical gap (space between labels top-to-bottom): ")
 print("------------------------------------")
 
 # --- Static Configuration ---
@@ -28,29 +30,40 @@ QR_CODES_FOLDER = 'qr_codes'
 OUTPUT_HTML_FILE = 'labels.html'
 LABELS_PER_PAGE = cols * rows
 
-# --- Generate the HTML and CSS dynamically based on user input ---
+# --- Generate the HTML and CSS dynamically ---
 html_content = f"""
 <!DOCTYPE html>
 <html>
 <head>
 <title>Printable QR Code Labels</title>
 <style>
+    /* This rule is for the browser's print engine */
+    @page {{
+        size: 8.5in 11in;
+        margin: 0; /* Force the browser to have NO default margins */
+    }}
     body {{
-        width: 8.5in;
-        height: 11in;
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
     }}
-    .page {{
-        width: {cols * label_width}in;
-        height: {rows * label_height}in;
-        margin: {margin_top}in {margin_left}in;
+    /* --- NEW: A container for a single sheet of paper --- */
+    .printable-page {{
+        width: 8.5in;
+        height: 11in;
+        position: relative; /* This is key for positioning the grid */
+        page-break-after: always; /* Each one is a new page */
+        overflow: hidden;
+    }}
+    /* --- NEW: The label grid is now positioned INSIDE the paper container --- */
+    .label-grid {{
+        position: absolute;
+        top: {margin_top}in;
+        left: {margin_left}in;
         display: grid;
-        grid-template-columns: repeat({cols}, 1fr);
-        grid-template-rows: repeat({rows}, 1fr);
-        gap: 0;
-        page-break-after: always; /* Ensure each grid is on a new page */
+        grid-template-columns: repeat({cols}, {label_width}in);
+        grid-template-rows: repeat({rows}, {label_height}in);
+        grid-gap: {vertical_gap}in {horizontal_gap}in;
     }}
     .label {{
         width: {label_width}in;
@@ -76,12 +89,6 @@ html_content = f"""
         line-height: 1.1;
         max-height: 0.2in;
     }}
-    @media print {{
-        body {{ margin: 0; }}
-        .page {{
-            margin: {margin_top}in {margin_left}in;
-        }}
-    }}
 </style>
 </head>
 <body>
@@ -99,16 +106,14 @@ if 'qrId' not in df.columns or 'fullName' not in df.columns:
 
 print(f"Generating labels for {len(df)} students...")
 
-page_count = 0
 label_count = 0
 
 for index, row in df.iterrows():
     if label_count % LABELS_PER_PAGE == 0:
-        if page_count > 0:
-            html_content += '</div>'
-        html_content += '<div class="page">'
-        page_count += 1
-
+        if label_count > 0:
+            html_content += '</div></div>' # Close previous grid and page
+        html_content += '<div class="printable-page"><div class="label-grid">' # Start new page and grid
+    
     qr_id = str(row['qrId'])
     full_name = str(row['fullName'])
     qr_image_path = os.path.join(QR_CODES_FOLDER, f"{qr_id}.png")
@@ -121,20 +126,17 @@ for index, row in df.iterrows():
         </div>
         """
     else:
-        html_content += f"""
-        <div class="label">
-            <div class="name">Img not found: {full_name}</div>
-        </div>
-        """
+        html_content += f'<div class="label"><div class="name">Img not found</div></div>'
     label_count += 1
 
+# Fill remaining grid cells to maintain structure
 while label_count % LABELS_PER_PAGE != 0:
     html_content += '<div class="label"></div>'
     label_count += 1
 
-html_content += "</div></body></html>"
+html_content += "</div></div></body></html>" # Close final tags
 
 with open(OUTPUT_HTML_FILE, 'w') as f:
     f.write(html_content)
 
-print(f"Success! Created '{OUTPUT_HTML_FILE}'. Open this file in a browser to print.")
+print(f"Success! Created '{OUTPUT_HTML_FILE}'.")
