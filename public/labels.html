@@ -4,22 +4,33 @@
 <head>
 <title>Printable QR Code Labels</title>
 <style>
+    /* This rule is for the browser's print engine */
+    @page {
+        size: 8.5in 11in;
+        margin: 0; /* Force the browser to have NO default margins */
+    }
     body {
-        width: 8.5in;
-        height: 11in;
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
     }
-    .page {
-        width: 6.0in;
-        height: 8.0in;
-        margin: 1.0in 1.0in;
+    /* --- NEW: A container for a single sheet of paper --- */
+    .printable-page {
+        width: 8.5in;
+        height: 11in;
+        position: relative; /* This is key for positioning the grid */
+        page-break-after: always; /* Each one is a new page */
+        overflow: hidden;
+    }
+    /* --- NEW: The label grid is now positioned INSIDE the paper container --- */
+    .label-grid {
+        position: absolute;
+        top: 0.5in;
+        left: 0.375in;
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: repeat(8, 1fr);
-        gap: 0;
-        page-break-after: always; /* Ensure each grid is on a new page */
+        grid-template-columns: repeat(7, 1.0in);
+        grid-template-rows: repeat(9, 1.0in);
+        grid-gap: 0.125in 0.125in;
     }
     .label {
         width: 1.0in;
@@ -45,16 +56,10 @@
         line-height: 1.1;
         max-height: 0.2in;
     }
-    @media print {
-        body { margin: 0; }
-        .page {
-            margin: 1.0in 1.0in;
-        }
-    }
 </style>
 </head>
 <body>
-<div class="page">
+<div class="printable-page"><div class="label-grid">
         <div class="label">
             <img src="qr_codes/ad5484.png" alt="QR Code for ad5484">
             <div class="name">Abed, Mordechai Chaim</div>
@@ -294,7 +299,7 @@
             <img src="qr_codes/ef6910.png" alt="QR Code for ef6910">
             <div class="name">Gotesdyner, Ariel</div>
         </div>
-        </div><div class="page">
+        
         <div class="label">
             <img src="qr_codes/ei8878.png" alt="QR Code for ei8878">
             <div class="name">Gurfinkel, Jacob</div>
@@ -369,7 +374,7 @@
             <img src="qr_codes/ga9008.png" alt="QR Code for ga9008">
             <div class="name">Kohanbash, Kayla</div>
         </div>
-        
+        </div></div><div class="printable-page"><div class="label-grid">
         <div class="label">
             <img src="qr_codes/gi1922.png" alt="QR Code for gi1922">
             <div class="name">Kohlhagen, Ethan</div>
@@ -534,7 +539,7 @@
             <img src="qr_codes/kk2688.png" alt="QR Code for kk2688">
             <div class="name">Ross, Liana</div>
         </div>
-        </div><div class="page">
+        
         <div class="label">
             <img src="qr_codes/kl6021.png" alt="QR Code for kl6021">
             <div class="name">Roth, Sarah</div>
@@ -684,7 +689,7 @@
             <img src="qr_codes/nc8146.png" alt="QR Code for nc8146">
             <div class="name">Zahavi, Lielle</div>
         </div>
-        
+        </div></div><div class="printable-page"><div class="label-grid">
         <div class="label">
             <img src="qr_codes/nd5110.png" alt="QR Code for nd5110">
             <div class="name">Zeitouni, Leora</div>
@@ -774,7 +779,7 @@
             <img src="qr_codes/om1295.png" alt="QR Code for om1295">
             <div class="name">Berger, Oran</div>
         </div>
-        </div><div class="page">
+        
         <div class="label">
             <img src="qr_codes/or1184.png" alt="QR Code for or1184">
             <div class="name">Berman, Liba</div>
@@ -999,7 +1004,7 @@
             <img src="qr_codes/tc2833.png" alt="QR Code for tc2833">
             <div class="name">Hirsch, Sarita</div>
         </div>
-        
+        </div></div><div class="printable-page"><div class="label-grid">
         <div class="label">
             <img src="qr_codes/td6002.png" alt="QR Code for td6002">
             <div class="name">Holczer, David</div>
@@ -1014,7 +1019,7 @@
             <img src="qr_codes/tf1977.png" alt="QR Code for tf1977">
             <div class="name">Izsak, Zachary</div>
         </div>
-        </div><div class="page">
+        
         <div class="label">
             <img src="qr_codes/tg5651.png" alt="QR Code for tg5651">
             <div class="name">Jacobs, Jackson</div>
@@ -1254,7 +1259,7 @@
             <img src="qr_codes/xb7904.png" alt="QR Code for xb7904">
             <div class="name">Schwartz, Yochanan</div>
         </div>
-        </div><div class="page">
+        
         <div class="label">
             <img src="qr_codes/xc5694.png" alt="QR Code for xc5694">
             <div class="name">Sedaghati, Noya</div>
@@ -1314,7 +1319,7 @@
             <img src="qr_codes/yv7233.png" alt="QR Code for yv7233">
             <div class="name">Ulmer, Harper</div>
         </div>
-        
+        </div></div><div class="printable-page"><div class="label-grid">
         <div class="label">
             <img src="qr_codes/yv8484.png" alt="QR Code for yv8484">
             <div class="name">Wasserman, Dean</div>
@@ -1339,4 +1344,4 @@
             <img src="qr_codes/zv4789.png" alt="QR Code for zv4789">
             <div class="name">Yarkony, Natalie</div>
         </div>
-        <div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div></div></body></html>
+        <div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div><div class="label"></div></div></div></body></html>
