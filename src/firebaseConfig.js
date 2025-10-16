@@ -1,12 +1,8 @@
-// Import the functions you need from the SDKs you need
+// src/firebaseConfig.js
 import { initializeApp } from "firebase/app";
-//import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth, signInAnonymously } from "firebase/auth";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyBAdK4p7oxWmNL0Mzc0eIMax7A9dSKZsrY",
   authDomain: "studentphonecomp.firebaseapp.com",
@@ -17,10 +13,11 @@ const firebaseConfig = {
   measurementId: "G-9BVJ4RRWNV"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-//const analytics = getAnalytics(app);
-
 const db = getFirestore(app);
 
-export { db };
+// Sign in anonymously so Firestore rules can require auth
+const auth = getAuth(app);
+signInAnonymously(auth).catch(console.error);
+
+export { db, auth };

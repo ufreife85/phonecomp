@@ -7,9 +7,14 @@ import {
   getDocs,
   addDoc,
   serverTimestamp,
+  writeBatch,
+  doc,
+  setDoc,
+  increment,
 } from 'firebase/firestore';
 import StudentList from './StudentList';
-import { X, Printer, Lock, ClipboardCopy, Mail, Trash2, Info } from 'lucide-react';
+import { Printer, Lock, ClipboardCopy, Mail, Trash2, Info, User } from 'lucide-react';
+import Analytics from './Analytics';
 
 // --- Set your password here ---
 const APP_PASSWORD = 'scan123';
@@ -26,9 +31,13 @@ function App() {
   const [lastAdded, setLastAdded] = useState('');
   const [slotInput, setSlotInput] = useState('');
 
+  // NEW: optional staff name to store with reports
+  const [staffName, setStaffName] = useState('');
+
   // --- Auth screen state ---
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passwordInput, setPasswordInput] = useState('');
+  const [view, setView] = useState('collect'); // 'collect' | 'analytics'
 
   useEffect(() => {
     localStorage.setItem('scannedStudents', JSON.stringify(unaccounted));
@@ -87,8 +96,8 @@ function App() {
       } else {
         // If multiple docs (shouldn’t happen), include them all defensively
         const newRows = [];
-        qs.forEach((doc) => {
-          const s = { id: doc.id, ...doc.data(), status: 'absent' };
+        qs.forEach((docSnap) => {
+          const s = { id: docSnap.id, ...docSnap.data(), status: 'absent' };
           newRows.push(s);
         });
         setUnaccounted((prev) => [...newRows, ...prev]);
@@ -122,20 +131,37 @@ function App() {
     showFeedback('List cleared.');
   };
 
+  const splitByStatus = () => {
+    const absent = [];
+    const late = [];
+    for (const s of unaccounted) {
+      if (s.status === 'late') late.push(s);
+      else absent.push(s);
+    }
+    return { absent, late };
+  };
+
   const formatReport = () => {
     if (unaccounted.length === 0) return 'All phones accounted for.';
-    const lines = unaccounted
-      .slice()
-      .reverse() // email reads oldest->newest
-      .map((s) => {
-        const name = s.fullName || '(Unassigned slot)';
-        const grade = s.grade ? ` (Grade ${s.grade})` : '';
-        const status = s.status === 'late' ? 'LATE' : 'ABSENT';
-        return `• ${status} — ${s.slotId} — ${name}${grade}`;
-      });
+    const { absent, late } = splitByStatus();
 
-    const hdr = `Phone Collection Report — ${new Date().toLocaleString()}`;
-    return `${hdr}\n\n${lines.join('\n')}\n\nTotal: ${unaccounted.length}`;
+    const hdr = `Phone Collection Report — ${new Date().toLocaleString()}${staffName ? ` — Staff: ${staffName}` : ''}`;
+    const toLines = (arr, label) =>
+      arr
+        .slice()
+        .reverse()
+        .map((s) => {
+          const name = s.fullName || '(Unassigned slot)';
+          const grade = s.grade ? ` (Grade ${s.grade})` : '';
+          return `• ${label} — ${s.slotId} — ${name}${grade}`;
+        })
+        .join('\n');
+
+    const absentBlock = absent.length ? `ABSENT (${absent.length})\n${toLines(absent, 'ABSENT')}` : '';
+    const lateBlock = late.length ? `\n\nLATE (${late.length})\n${toLines(late, 'LATE')}` : '';
+    const total = `\n\nTotal: ${unaccounted.length}`;
+
+    return `${hdr}\n\n${absentBlock}${lateBlock}${total}`;
   };
 
   const copyReportToClipboard = async () => {
@@ -147,37 +173,89 @@ function App() {
     }
   };
 
-  // Optional analytics logging: one doc per row
-  const logCompliance = async () => {
+  /**
+   * NEW: Persist analytics and a report summary.
+   * - Adds one document under /reports/<YYYY-MM-DD>/<autoId> with the day's list.
+   * - Upserts counters per student under /analytics/<studentKey>:
+   *     missedCount (increment), lateCount (increment), lastStatusAt (serverTimestamp)
+   *   studentKey is studentId if present, otherwise "slot:<slotId>"
+   */
+  const submitAnalyticsAndReport = async () => {
+    if (unaccounted.length === 0) return;
+
+    const todayIso = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+    const { absent, late } = splitByStatus();
+
+    // 1) Write a daily report row
+    const reportCol = collection(db, 'reports', todayIso, 'submissions');
+    const reportPayload = {
+      ts: serverTimestamp(),
+      date: todayIso,
+      staffName: staffName || null,
+      total: unaccounted.length,
+      absent: absent.map((s) => ({
+        studentId: s.studentId ?? null,
+        fullName: s.fullName ?? null,
+        grade: s.grade ?? null,
+        slotId: s.slotId ?? null,
+      })),
+      late: late.map((s) => ({
+        studentId: s.studentId ?? null,
+        fullName: s.fullName ?? null,
+        grade: s.grade ?? null,
+        slotId: s.slotId ?? null,
+      })),
+    };
+    await addDoc(reportCol, reportPayload);
+
+    // 2) Upsert analytics counters in a batch
+    const batch = writeBatch(db);
+    const touchAnalyticsDoc = (s) => {
+      const key = s.studentId ? String(s.studentId) : `slot:${s.slotId}`;
+      const ref = doc(db, 'analytics', key);
+      const base = {
+        fullName: s.fullName ?? null,
+        slotId: s.slotId ?? null,
+        grade: s.grade ?? null,
+        studentId: s.studentId ?? null,
+        lastStatusAt: serverTimestamp(),
+      };
+      // Increment appropriate counter
+      const counters =
+        s.status === 'late'
+          ? { lateCount: increment(1) }
+          : { missedCount: increment(1) };
+      batch.set(ref, { ...base, ...counters }, { merge: true });
+    };
+
+    unaccounted.forEach(touchAnalyticsDoc);
+    await batch.commit();
+  };
+
+  const submitThen = async (afterFn) => {
     try {
-      const colRef = collection(db, 'compliance');
-      const todayIso = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-      for (const s of unaccounted) {
-        const payload = {
-          ts: serverTimestamp(),
-          date: todayIso,
-          status: s.status, // 'absent' | 'late'
-          slotId: s.slotId ?? null,
-          studentId: s.studentId ?? null,
-          fullName: s.fullName ?? null,
-          grade: s.grade ?? null,
-        };
-        await addDoc(colRef, payload);
-      }
+      await submitAnalyticsAndReport();
+      await afterFn();
+      // Optional: clear the list after submission
+      // handleClearList();
     } catch (e) {
-      // Don’t block UX; just log
-      console.error('Compliance log error:', e);
+      console.error('Submit error:', e);
+      showFeedback('Failed to submit analytics/report.', true);
     }
   };
 
-  const openMailtoDraft = async () => {
-    // Log analytics silently; if it fails, still continue to mailto
-    await logCompliance();
+  const openMailtoDraft = () =>
+    submitThen(() => {
+      const subject = encodeURIComponent('Phone Collection Report');
+      const body = encodeURIComponent(formatReport());
+      window.location.href = `mailto:?subject=${subject}&body=${body}`;
+    });
 
-    const subject = encodeURIComponent('Phone Collection Report');
-    const body = encodeURIComponent(formatReport());
-    window.location.href = `mailto:?subject=${subject}&body=${body}`;
-  };
+  const copyThenSubmit = () =>
+    submitThen(async () => {
+      await navigator.clipboard.writeText(formatReport());
+      showFeedback('Report copied & analytics saved.');
+    });
 
   const handlePasswordSubmit = () => {
     if (passwordInput === APP_PASSWORD) {
@@ -194,7 +272,7 @@ function App() {
     return (
       <div className="min-h-screen bg-slate-100 flex flex-col items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-xs text-center">
-          <h1 className="text-2xl font-bold text-slate-900 mb-1">Phone Scanner</h1>
+          <h1 className="text-2xl font-bold text-slate-900 mb-1">Phone Collection</h1>
           <p className="text-slate-600 mb-6">Please enter the password to continue.</p>
           <div className="relative">
             <Lock
@@ -233,9 +311,8 @@ function App() {
         <header className="text-center my-6">
           <h1 className="text-4xl font-bold text-slate-900">Phone Collection</h1>
           <p className="text-slate-600 mt-2">
-            Enter <span className="font-mono">slotId</span> (A–H, 1–36). Add a slot for each{' '}
-            <em>empty</em> position in the case. Mark <strong>Late</strong> if a student arrives
-            and drops off after the sweep.
+            Enter <span className="font-mono">slotId</span> (A–H, 1–36). Add a slot for each <em>empty</em> position in the case.
+            Mark <strong>Late</strong> if a student arrives and drops off after the sweep.
           </p>
 
           <div className="mt-4 flex items-center justify-center gap-3 flex-wrap">
@@ -255,7 +332,36 @@ function App() {
           </div>
         </header>
 
+        <div className="flex items-center gap-2 justify-center mb-4">
+            <button
+              onClick={() => setView('collect')}
+              className={`px-4 py-2 rounded-lg ${view === 'collect' ? 'bg-blue-600 text-white' : 'bg-slate-200 hover:bg-slate-300'}`}
+            >
+              Collection
+            </button>
+            <button
+              onClick={() => setView('analytics')}
+              className={`px-4 py-2 rounded-lg ${view === 'analytics' ? 'bg-blue-600 text-white' : 'bg-slate-200 hover:bg-slate-300'}`}
+            >
+              Analytics
+            </button>
+          </div>
+        {view === 'collect' ? (
         <main className="bg-white rounded-2xl shadow-lg p-6">
+          {/* Staff name (optional) */}
+          <div className="mb-4">
+            <label className="block text-sm text-slate-600 mb-1">Staff (optional)</label>
+            <div className="relative">
+              <User size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <input
+                value={staffName}
+                onChange={(e) => setStaffName(e.target.value)}
+                placeholder="e.g., Ms. Levine"
+                className="w-full sm:w-72 pl-9 pr-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+
           {/* Slot entry */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-end gap-3">
             <div className="w-full sm:w-auto">
@@ -306,18 +412,18 @@ function App() {
               <div className="mt-6 border-t pt-6 flex flex-col items-center gap-4">
                 <div className="flex items-center gap-3 flex-wrap">
                   <button
-                    onClick={copyReportToClipboard}
+                    onClick={copyThenSubmit}
                     className="flex items-center justify-center gap-2 bg-slate-700 text-white font-bold py-3 px-4 rounded-xl shadow-md hover:bg-slate-800 transition-all"
-                    title="Copy the report text"
+                    title="Copy the report text & save analytics"
                   >
                     <ClipboardCopy size={18} />
-                    Copy Report
+                    Copy Report & Save
                   </button>
 
                   <button
                     onClick={openMailtoDraft}
                     className="flex items-center justify-center gap-3 bg-green-600 text-white font-bold py-3 px-4 rounded-xl shadow-md hover:bg-green-700 transition-all"
-                    title="Open default mail client with pre-filled report"
+                    title="Open default mail client with pre-filled report (saves analytics too)"
                   >
                     <Mail size={18} />
                     Open Email Draft ({unaccounted.length})
@@ -343,6 +449,9 @@ function App() {
             )}
           </div>
         </main>
+        ) : (
+  <Analytics />
+    )}
       </div>
     </div>
   );
